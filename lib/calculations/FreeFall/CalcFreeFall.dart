@@ -28,40 +28,86 @@ class CalcFreeFall {
     return this.GRAVITY * this.calcTime();
   }
 
-  List<Map> createListForTimeWithValuesRandomAndValueThurt() {
-      final List<Map> listRandom = [];
+  List<Selected> createListForTimeWithValuesRandomAndValueThurt() {
+      final List<Selected> listRandom = [];
       double time =  this.calcTime();
-      listRandom.add({'value':time, 'isResponse' : false  });
+      
+      listRandom.add(Selected(value: "seleccione",isResponse: false ));
+      listRandom.add(Selected(value: time.toString(),isResponse: true ));
       var rng = new Random();
       for(var i = 0; i< 3; i++) {
         final findRand = rng.nextDouble() * time;
-        listRandom.add({'value':findRand, 'isResponse' : false  });
+        listRandom.add( Selected(value: findRand.toString(),isResponse: false ) );
       }
+
+      Selected selected = this.problem.valuesToCalculate.firstWhere((element) => element.type == 'time').selected;
+      if(selected != null){
+        bool verifyExists = listRandom.where((element) => element.value == selected.value).isNotEmpty;
+
+        if(!verifyExists) {
+          Selected elementToRemove =  listRandom.firstWhere((element)  {
+              return !element.isResponse  && element.value != "seleccione";
+          });
+          listRandom.removeWhere((item) => item.value == elementToRemove.value);
+          listRandom.add(selected);
+        }
+      }
+      
       return listRandom;
   }
   
-  List<Map> createListForVelocityWithValuesRandomAndValueThurt() {
-      final List<Map> listRandom = [];
+  List<Selected> createListForVelocityWithValuesRandomAndValueThurt() {
+      final List<Selected> listRandom = [];
       double time =  this.calcVelocity();
-      listRandom.add({'value':time, 'isResponse' : false  });
+      listRandom.add(Selected(value: "seleccione",isResponse: false ));
+      listRandom.add( Selected(value: time.toString(),isResponse: true ) );
       var rng = new Random();
       for(var i = 0; i< 3; i++) {
         final findRand = rng.nextDouble() * time;
-        listRandom.add({'value':findRand, 'isResponse' : false  });
+        listRandom.add( Selected(value: findRand.toString(),isResponse: false ) );
       }
+      
+      Selected selected = this.problem.valuesToCalculate.firstWhere((element) => element.type == 'velocity').selected;
+      
+      if(selected != null) { 
+        bool verifyExists = listRandom.where((element) => element.value == selected.value).isNotEmpty;
+        if(!verifyExists) {
+          Selected elementToRemove =  listRandom.firstWhere((element)  {
+              return !element.isResponse  && element.value != "seleccione";
+          });
+          listRandom.removeWhere((item) => item.value == elementToRemove.value);
+          listRandom.add(selected);
+        }
+      }
+
       return listRandom;
+
   }
 
   
-  List<Map> createListForHeigthWithValuesRandomAndValueThurt() {
-      final List<Map> listRandom = [];
+  List<Selected> createListForHeigthWithValuesRandomAndValueThurt() {
+      final List<Selected> listRandom = [];
       double time =  this.calcHeight();
-      listRandom.add({'value':time, 'isResponse' : false  });
+      listRandom.add(Selected(value: "seleccione",isResponse: false ));
+      listRandom.add( Selected(value: time.toString(),isResponse: true ));
       var rng = new Random();
       for(var i = 0; i< 3; i++) {
         final findRand = rng.nextDouble() * time;
-        listRandom.add({'value':findRand, 'isResponse' : false  });
+        listRandom.add( Selected(value: findRand.toString(),isResponse: false ));
       }
+       Selected selected = this.problem.valuesToCalculate.firstWhere((element) => element.type == 'height').selected;
+       if(selected != null) {
+         bool verifyExists = listRandom.where((element) => element.value == selected.value).isNotEmpty;
+         
+        if(!verifyExists) {
+          Selected elementToRemove =  listRandom.firstWhere((element)  {
+              return !element.isResponse  && element.value != "seleccione";
+          });
+          listRandom.removeWhere((item) => item.value == elementToRemove.value);
+          listRandom.add(selected);
+        }
+      }
+
       return listRandom;
   }
 

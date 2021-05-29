@@ -12,8 +12,12 @@ class ProblemsService {
           initialVelocity: 0,
           level: parseLevel("easy"),
           velocity: null,
-          time: 5,
-          valuesToCalculate: ["altura","velocidad"]
+          time: 5.3,
+          valuesToCalculate: 
+          [
+            ValuesToCalculate(type: "height",selected: null),
+            ValuesToCalculate(type : "velocity",selected: null)
+          ]
         ),
         Problem(
           problem: "Una niña deja caer una muñeca desde una ventana que esta a 80 metros sobre el suelo",
@@ -22,7 +26,10 @@ class ProblemsService {
           level: parseLevel("easy"),
           velocity: null,
           time: null,
-          valuesToCalculate: ["tiempo","velocidad"]
+          valuesToCalculate: [
+            ValuesToCalculate(type : "time",selected: null),
+            ValuesToCalculate(type : "velocity",selected: null),
+          ]
         ),
       ];
   }
