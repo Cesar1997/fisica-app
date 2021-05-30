@@ -12,7 +12,7 @@ String problemToJson(Problem data) => json.encode(data.toJson());
 
 class Problem {
     Problem({
-        this.problem,
+        this.description,
         this.height,
         this.time,
         this.velocity,
@@ -21,7 +21,7 @@ class Problem {
         this.level,
     });
 
-    String problem;
+    String description;
     double height;
     double time;
     double velocity;
@@ -30,7 +30,7 @@ class Problem {
     String level;
 
     factory Problem.fromJson(Map<String, dynamic> json) => Problem(
-        problem: json["problem"],
+        description: json["problem"],
         height: json["height"].toDouble(),
         time: json["time"].toDouble(),
         velocity: json["velocity"].toDouble(),
@@ -40,7 +40,7 @@ class Problem {
     );
 
     Map<String, dynamic> toJson() => {
-        "problem": problem,
+        "problem": description,
         "height": height,
         "time": time,
         "velocity": velocity,

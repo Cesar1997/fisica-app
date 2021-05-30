@@ -9,6 +9,7 @@ class CalcFreeFall {
   CalcFreeFall(Problem problem) {
     this.problem = problem;
   }
+  
   double calcTime() {
     if(this.problem.time != null) {
       return this.problem.time;
@@ -25,6 +26,9 @@ class CalcFreeFall {
   }
 
   double calcVelocity() {
+    if(this.problem.velocity != null) {
+      return this.problem.velocity;
+    }
     return this.GRAVITY * this.calcTime();
   }
 
@@ -33,11 +37,11 @@ class CalcFreeFall {
       double time =  this.calcTime();
       
       listRandom.add(Selected(value: "seleccione",isResponse: false ));
-      listRandom.add(Selected(value: time.toString(),isResponse: true ));
+      listRandom.add(Selected(value: time.toStringAsFixed(2),isResponse: true ));
       var rng = new Random();
       for(var i = 0; i< 3; i++) {
         final findRand = rng.nextDouble() * time;
-        listRandom.add( Selected(value: findRand.toString(),isResponse: false ) );
+        listRandom.add( Selected(value: findRand.toStringAsFixed(2),isResponse: false ) );
       }
 
       Selected selected = this.problem.valuesToCalculate.firstWhere((element) => element.type == 'time').selected;
@@ -60,11 +64,11 @@ class CalcFreeFall {
       final List<Selected> listRandom = [];
       double time =  this.calcVelocity();
       listRandom.add(Selected(value: "seleccione",isResponse: false ));
-      listRandom.add( Selected(value: time.toString(),isResponse: true ) );
+      listRandom.add( Selected(value: time.toStringAsFixed(2),isResponse: true ) );
       var rng = new Random();
       for(var i = 0; i< 3; i++) {
         final findRand = rng.nextDouble() * time;
-        listRandom.add( Selected(value: findRand.toString(),isResponse: false ) );
+        listRandom.add( Selected(value: findRand.toStringAsFixed(2),isResponse: false ) );
       }
       
       Selected selected = this.problem.valuesToCalculate.firstWhere((element) => element.type == 'velocity').selected;
@@ -89,11 +93,11 @@ class CalcFreeFall {
       final List<Selected> listRandom = [];
       double time =  this.calcHeight();
       listRandom.add(Selected(value: "seleccione",isResponse: false ));
-      listRandom.add( Selected(value: time.toString(),isResponse: true ));
+      listRandom.add( Selected(value: time.toStringAsFixed(2),isResponse: true ));
       var rng = new Random();
       for(var i = 0; i< 3; i++) {
         final findRand = rng.nextDouble() * time;
-        listRandom.add( Selected(value: findRand.toString(),isResponse: false ));
+        listRandom.add( Selected(value: findRand.toStringAsFixed(2),isResponse: false ));
       }
        Selected selected = this.problem.valuesToCalculate.firstWhere((element) => element.type == 'height').selected;
        if(selected != null) {
